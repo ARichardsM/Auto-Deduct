@@ -1,0 +1,13 @@
+# Godot 4+ specific ignores
+.godot/
+/android/
+
+# Project Files
+.vs
+project.godot
+MobileGodot.sln
+MobileGodot.csproj
+
+# Base Icon
+icon.svg.import
+icon.svg

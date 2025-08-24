@@ -1,0 +1,110 @@
+[gd_scene load_steps=2 format=3 uid="uid://hrmvsm02sm64"]
+
+[ext_resource type="Script" path="res://MainPage.cs" id="1_4tr5t"]
+
+[node name="Control" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_4tr5t")
+
+[node name="Panel" type="Panel" parent="."]
+z_index = 99
+layout_mode = 0
+offset_left = 271.0
+offset_top = 14.0
+offset_right = 881.0
+offset_bottom = 634.0
+
+[node name="Box" type="VBoxContainer" parent="Panel"]
+layout_mode = 0
+offset_left = 5.0
+offset_top = 10.0
+offset_right = 605.0
+offset_bottom = 610.0
+theme_override_constants/separation = 5
+
+[node name="Split1" type="HSplitContainer" parent="Panel/Box"]
+custom_minimum_size = Vector2(0, 95)
+layout_mode = 2
+
+[node name="LineEdit1" type="LineEdit" parent="Panel/Box/Split1"]
+custom_minimum_size = Vector2(300, 0)
+layout_mode = 2
+placeholder_text = "Temp Text"
+
+[node name="LineEdit2" type="LineEdit" parent="Panel/Box/Split1"]
+layout_mode = 2
+placeholder_text = "Temp Text"
+
+[node name="Split2" type="HSplitContainer" parent="Panel/Box"]
+custom_minimum_size = Vector2(300, 95)
+layout_mode = 2
+
+[node name="LineEdit1" type="LineEdit" parent="Panel/Box/Split2"]
+custom_minimum_size = Vector2(300, 95)
+layout_mode = 2
+placeholder_text = "Temp Text"
+
+[node name="LineEdit2" type="LineEdit" parent="Panel/Box/Split2"]
+custom_minimum_size = Vector2(0, 95)
+layout_mode = 2
+placeholder_text = "Temp Text"
+
+[node name="Split3" type="HSplitContainer" parent="Panel/Box"]
+custom_minimum_size = Vector2(300, 95)
+layout_mode = 2
+
+[node name="LineEdit1" type="LineEdit" parent="Panel/Box/Split3"]
+custom_minimum_size = Vector2(300, 0)
+layout_mode = 2
+placeholder_text = "Temp Text"
+
+[node name="LineEdit2" type="LineEdit" parent="Panel/Box/Split3"]
+layout_mode = 2
+placeholder_text = "Temp Text"
+
+[node name="Split4" type="HSplitContainer" parent="Panel/Box"]
+custom_minimum_size = Vector2(300, 95)
+layout_mode = 2
+
+[node name="LineEdit1" type="LineEdit" parent="Panel/Box/Split4"]
+custom_minimum_size = Vector2(300, 0)
+layout_mode = 2
+placeholder_text = "Temp Text"
+
+[node name="LineEdit2" type="LineEdit" parent="Panel/Box/Split4"]
+layout_mode = 2
+placeholder_text = "Temp Text"
+
+[node name="Split5" type="HSplitContainer" parent="Panel/Box"]
+custom_minimum_size = Vector2(300, 95)
+layout_mode = 2
+
+[node name="LineEdit1" type="LineEdit" parent="Panel/Box/Split5"]
+custom_minimum_size = Vector2(300, 0)
+layout_mode = 2
+placeholder_text = "Temp Text"
+
+[node name="LineEdit2" type="LineEdit" parent="Panel/Box/Split5"]
+layout_mode = 2
+placeholder_text = "Temp Text"
+
+[node name="Split6" type="HSplitContainer" parent="Panel/Box"]
+custom_minimum_size = Vector2(300, 95)
+layout_mode = 2
+
+[node name="Button0" type="Button" parent="Panel/Box/Split6"]
+custom_minimum_size = Vector2(300, 0)
+layout_mode = 2
+text = "Wipe"
+
+[node name="Button1" type="Button" parent="Panel/Box/Split6"]
+layout_mode = 2
+text = "Run"
+
+[connection signal="pressed" from="Panel/Box/Split6/Button0" to="." method="ButtonPressed" binds= [0]]
+[connection signal="pressed" from="Panel/Box/Split6/Button1" to="." method="ButtonPressed" binds= [1]]
