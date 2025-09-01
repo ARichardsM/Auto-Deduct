@@ -1,18 +1,22 @@
-# Mobile Deduct
+# Automated Deduction
 
 ## Summary
 
-The Mobile Social Deduction Game is Godot-based version of the BrantSteele Among Us simulator, designed to provide a more accurate representation of gameplay mechanics through improved logic. This project prioritizes mobile development and uses C# and GDScript for scripting.
+The Automated Deduction Project is based in the website BrantSteele.net, and is designed to provide a method of automated selection, in the style of a tournment or a reality competition. This project also aims to test mobile deployment of Godot applications and uses C# for scripting.
+
 
 ## Overview
 
-| File                        | Description |
-|-----------------------------|-------------|
+| File                        | Description                                          |
+|-----------------------------|------------------------------------------------------|
+| MainPage.cs                 | The main page script, contains all current function. |
+| MainPage.tscn               | The main page scene.                                 |
 
 ## Current Objectives
 
-- [ ] Mobile Support
-- [ ] Ten Member Simulation
-- [ ] Basic Elimination System
+- [X] Ten Member Simulation
+- [X] Basic Elimination System
 
 ## Future Goals
+
+- [ ] Mobile Support
