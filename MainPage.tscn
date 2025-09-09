@@ -12,6 +12,7 @@ grow_vertical = 2
 script = ExtResource("1_4tr5t")
 
 [node name="Panel" type="Panel" parent="."]
+visible = false
 z_index = 99
 layout_mode = 0
 offset_left = 271.0
@@ -106,5 +107,40 @@ text = "Wipe"
 layout_mode = 2
 text = "Run"
 
+[node name="Panel2" type="Panel" parent="."]
+z_index = 99
+layout_mode = 0
+offset_left = 271.0
+offset_top = 14.0
+offset_right = 881.0
+offset_bottom = 634.0
+
+[node name="Box" type="VBoxContainer" parent="Panel2"]
+layout_mode = 0
+offset_left = 5.0
+offset_top = 10.0
+offset_right = 605.0
+offset_bottom = 610.0
+theme_override_constants/separation = 5
+
+[node name="Label" type="Label" parent="Panel2/Box"]
+custom_minimum_size = Vector2(300, 500)
+layout_mode = 2
+
+[node name="Split6" type="HSplitContainer" parent="Panel2/Box"]
+custom_minimum_size = Vector2(300, 95)
+layout_mode = 2
+
+[node name="Button0" type="Button" parent="Panel2/Box/Split6"]
+custom_minimum_size = Vector2(300, 0)
+layout_mode = 2
+text = "Restart"
+
+[node name="Button1" type="Button" parent="Panel2/Box/Split6"]
+layout_mode = 2
+text = "Continue"
+
 [connection signal="pressed" from="Panel/Box/Split6/Button0" to="." method="ButtonPressed" binds= [0]]
 [connection signal="pressed" from="Panel/Box/Split6/Button1" to="." method="ButtonPressed" binds= [1]]
+[connection signal="pressed" from="Panel2/Box/Split6/Button0" to="." method="ButtonPressed" binds= [2]]
+[connection signal="pressed" from="Panel2/Box/Split6/Button1" to="." method="ButtonPressed" binds= [3]]

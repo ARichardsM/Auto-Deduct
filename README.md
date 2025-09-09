@@ -2,7 +2,7 @@
 
 ## Summary
 
-The Automated Deduction Project is based in the website BrantSteele.net, and is designed to provide a method of automated selection, in the style of a tournment or a reality competition. This project also aims to test mobile deployment of Godot applications and uses C# for scripting.
+The Automated Deduction Project is based on the website BrantSteele.net, and is designed to provide a method of automated selection, in the style of a tournment or a reality competition. This project also aims to test mobile deployment of Godot applications and uses C# for scripting.
 
 
 ## Overview

@@ -30,6 +30,7 @@ public partial class MainPage : Node
     {
 		// Variables
 		List<results> validEntries = new List<results>();
+		String runText = "";
 
 		// Store valid entries
         foreach (LineEdit ent in entries)
@@ -67,9 +68,16 @@ public partial class MainPage : Node
 		// Sort the Entries
         validEntries = validEntries.OrderByDescending(x => x.Wins).ToList();
 
-		// Print Entries
+		// Record Entries
 		foreach (results ent in validEntries)
-			GD.Print("ID: " + ent.ID + ", Score: " + ent.Wins + " W - " + ent.Losses + " L");
+            runText += ("ID: " + ent.ID + ", Score: " + ent.Wins + " W - " + ent.Losses + " L\n");
+
+		// Swap to print-out panel
+        SwapVisible(false);
+
+		// Write text to screen
+		Label screenText = GetNode<Label>("Panel2/Box/Label");
+		screenText.Text = runText;
     }
 
     // Handle button presses
@@ -85,12 +93,37 @@ public partial class MainPage : Node
 			case 1:
 				Run();
 				break;
-		}
+            // Restart
+            case 2:
+                SwapVisible(true);
+                break;
+            // Continue
+            case 3:
+                SwapVisible(true);
+                break;
+        }
 	}
+
+	// Set visibile panel
+	public void SwapVisible(bool isSetup)
+	{
+		if (isSetup)
+		{
+            GetNode<Panel>("Panel").Visible = true;
+            GetNode<Panel>("Panel2").Visible = false;
+        } else
+		{
+            GetNode<Panel>("Panel").Visible = false;
+            GetNode<Panel>("Panel2").Visible = true;
+        }
+	}
+
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
 	{
-		// Load each Line node into the array
+		SwapVisible(true);
+
+        // Load each Line node into the array
         for (int i = 1; i < 6; i++)
             for (int j = 1; j < 3; j++)
                 entries.Add(GetNode<LineEdit>("Panel/Box/Split" + i + "/LineEdit" + j));
