@@ -42,35 +42,9 @@ public partial class MainPage : Node
                 newResult.Losses = 0;
                 validEntries.Add(newResult);
 			}
-
-		// Compete
-		for (int i = 0; i < validEntries.Count; i++)
-		{
-			for (int j = 0; j < validEntries.Count; j++)
-			{
-				// Skip Self
-				if (i == j)
-					continue;
-
-				// Pick Winner
-				Random rand = new Random();
-				int whoWins = rand.Next(2);
-
-				// Adjust Results
-				validEntries[i].Wins += whoWins;
-                validEntries[j].Losses += whoWins;
-
-                validEntries[i].Losses += (1 - whoWins);
-                validEntries[j].Wins += (1 - whoWins);
-            }
-		}
-
-		// Sort the Entries
-        validEntries = validEntries.OrderByDescending(x => x.Wins).ToList();
-
-		// Record Entries
-		foreach (results ent in validEntries)
-            runText += ("ID: " + ent.ID + ", Score: " + ent.Wins + " W - " + ent.Losses + " L\n");
+        
+        // Compete
+        runText = basicCompete(validEntries);
 
 		// Swap to print-out panel
         SwapVisible(false);
@@ -117,6 +91,44 @@ public partial class MainPage : Node
             GetNode<Panel>("Panel2").Visible = true;
         }
 	}
+
+    // Run a basic competition
+    private string basicCompete(List<results> validEntries)
+	{
+        // Variables
+        String runText = "";
+
+        // Determine results
+        for (int i = 0; i < validEntries.Count; i++)
+        {
+            for (int j = 0; j < validEntries.Count; j++)
+            {
+                // Skip Self
+                if (i == j)
+                    continue;
+
+                // Pick Winner
+                Random rand = new Random();
+                int whoWins = rand.Next(2);
+
+                // Adjust Results
+                validEntries[i].Wins += whoWins;
+                validEntries[j].Losses += whoWins;
+
+                validEntries[i].Losses += (1 - whoWins);
+                validEntries[j].Wins += (1 - whoWins);
+            }
+        }
+
+        // Sort the Entries
+        validEntries = validEntries.OrderByDescending(x => x.Wins).ToList();
+
+        // Record Entries
+        foreach (results ent in validEntries)
+            runText += ("ID: " + ent.ID + ", Score: " + ent.Wins + " W - " + ent.Losses + " L\n");
+
+        return runText;
+    }
 
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()

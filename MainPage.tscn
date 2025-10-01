@@ -31,6 +31,7 @@ theme_override_constants/separation = 5
 [node name="Split1" type="HSplitContainer" parent="Panel/Box"]
 custom_minimum_size = Vector2(0, 95)
 layout_mode = 2
+collapsed = true
 
 [node name="LineEdit1" type="LineEdit" parent="Panel/Box/Split1"]
 custom_minimum_size = Vector2(300, 0)
@@ -44,6 +45,7 @@ placeholder_text = "Temp Text"
 [node name="Split2" type="HSplitContainer" parent="Panel/Box"]
 custom_minimum_size = Vector2(300, 95)
 layout_mode = 2
+collapsed = true
 
 [node name="LineEdit1" type="LineEdit" parent="Panel/Box/Split2"]
 custom_minimum_size = Vector2(300, 95)
@@ -58,6 +60,7 @@ placeholder_text = "Temp Text"
 [node name="Split3" type="HSplitContainer" parent="Panel/Box"]
 custom_minimum_size = Vector2(300, 95)
 layout_mode = 2
+collapsed = true
 
 [node name="LineEdit1" type="LineEdit" parent="Panel/Box/Split3"]
 custom_minimum_size = Vector2(300, 0)
@@ -71,6 +74,7 @@ placeholder_text = "Temp Text"
 [node name="Split4" type="HSplitContainer" parent="Panel/Box"]
 custom_minimum_size = Vector2(300, 95)
 layout_mode = 2
+collapsed = true
 
 [node name="LineEdit1" type="LineEdit" parent="Panel/Box/Split4"]
 custom_minimum_size = Vector2(300, 0)
@@ -84,6 +88,7 @@ placeholder_text = "Temp Text"
 [node name="Split5" type="HSplitContainer" parent="Panel/Box"]
 custom_minimum_size = Vector2(300, 95)
 layout_mode = 2
+collapsed = true
 
 [node name="LineEdit1" type="LineEdit" parent="Panel/Box/Split5"]
 custom_minimum_size = Vector2(300, 0)
@@ -95,8 +100,10 @@ layout_mode = 2
 placeholder_text = "Temp Text"
 
 [node name="Split6" type="HSplitContainer" parent="Panel/Box"]
+clip_contents = true
 custom_minimum_size = Vector2(300, 95)
 layout_mode = 2
+collapsed = true
 
 [node name="Button0" type="Button" parent="Panel/Box/Split6"]
 custom_minimum_size = Vector2(300, 0)
@@ -130,6 +137,7 @@ layout_mode = 2
 [node name="Split6" type="HSplitContainer" parent="Panel2/Box"]
 custom_minimum_size = Vector2(300, 95)
 layout_mode = 2
+collapsed = true
 
 [node name="Button0" type="Button" parent="Panel2/Box/Split6"]
 custom_minimum_size = Vector2(300, 0)
