@@ -31,6 +31,7 @@ public partial class MainPage : Node
 		// Variables
 		List<results> validEntries = new List<results>();
 		String runText = "";
+        int compType;
 
 		// Store valid entries
         foreach (LineEdit ent in entries)
@@ -42,8 +43,20 @@ public partial class MainPage : Node
                 newResult.Losses = 0;
                 validEntries.Add(newResult);
 			}
-        
+
+        // Determine competion type
+        compType = GetNode<OptionButton>("Panel/Box/ButtonBox/SelectButton").Selected;
+
         // Compete
+        switch (compType)
+        {
+            case 0:
+                GD.Print("1");
+                break;
+            case 1:
+                GD.Print("2");
+                break;
+        }
         runText = basicCompete(validEntries);
 
 		// Swap to print-out panel

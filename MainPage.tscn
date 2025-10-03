@@ -12,7 +12,6 @@ grow_vertical = 2
 script = ExtResource("1_4tr5t")
 
 [node name="Panel" type="Panel" parent="."]
-visible = false
 z_index = 99
 layout_mode = 0
 offset_left = 271.0
@@ -27,6 +26,7 @@ offset_top = 10.0
 offset_right = 605.0
 offset_bottom = 610.0
 theme_override_constants/separation = 5
+alignment = 1
 
 [node name="Split1" type="HSplitContainer" parent="Panel/Box"]
 custom_minimum_size = Vector2(0, 95)
@@ -100,6 +100,7 @@ layout_mode = 2
 placeholder_text = "Temp Text"
 
 [node name="Split6" type="HSplitContainer" parent="Panel/Box"]
+visible = false
 clip_contents = true
 custom_minimum_size = Vector2(300, 95)
 layout_mode = 2
@@ -114,7 +115,33 @@ text = "Wipe"
 layout_mode = 2
 text = "Run"
 
+[node name="ButtonBox" type="HBoxContainer" parent="Panel/Box"]
+custom_minimum_size = Vector2(200, 95)
+layout_mode = 2
+theme_override_constants/separation = 7
+
+[node name="WipeButton" type="Button" parent="Panel/Box/ButtonBox"]
+custom_minimum_size = Vector2(195, 0)
+layout_mode = 2
+text = "Wipe"
+
+[node name="SelectButton" type="OptionButton" parent="Panel/Box/ButtonBox"]
+custom_minimum_size = Vector2(195, 0)
+layout_mode = 2
+alignment = 1
+selected = 0
+item_count = 2
+popup/item_0/text = "Basic"
+popup/item_1/text = "Other"
+popup/item_1/id = 1
+
+[node name="RunButton" type="Button" parent="Panel/Box/ButtonBox"]
+custom_minimum_size = Vector2(195, 0)
+layout_mode = 2
+text = "Run"
+
 [node name="Panel2" type="Panel" parent="."]
+visible = false
 z_index = 99
 layout_mode = 0
 offset_left = 271.0
@@ -150,5 +177,7 @@ text = "Continue"
 
 [connection signal="pressed" from="Panel/Box/Split6/Button0" to="." method="ButtonPressed" binds= [0]]
 [connection signal="pressed" from="Panel/Box/Split6/Button1" to="." method="ButtonPressed" binds= [1]]
+[connection signal="pressed" from="Panel/Box/ButtonBox/WipeButton" to="." method="ButtonPressed" binds= [0]]
+[connection signal="pressed" from="Panel/Box/ButtonBox/RunButton" to="." method="ButtonPressed" binds= [1]]
 [connection signal="pressed" from="Panel2/Box/Split6/Button0" to="." method="ButtonPressed" binds= [2]]
 [connection signal="pressed" from="Panel2/Box/Split6/Button1" to="." method="ButtonPressed" binds= [3]]
