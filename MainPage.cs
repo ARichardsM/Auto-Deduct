@@ -7,9 +7,9 @@ public partial class MainPage : Node
 {
 	// Variables
 	List<LineEdit> entries = new List<LineEdit>();
-    private class results
+    private class simpleTracker
     {
-		public results()
+		public simpleTracker()
 		{
 
 		}
@@ -29,7 +29,7 @@ public partial class MainPage : Node
     private void Run()
     {
 		// Variables
-		List<results> validEntries = new List<results>();
+        List<string> textEntries = new List<string>();
 		String runText = "";
         int compType;
 
@@ -37,11 +37,7 @@ public partial class MainPage : Node
         foreach (LineEdit ent in entries)
 			if (ent.Text != "")
 			{
-				results newResult = new results();
-                newResult.ID = ent.Text;
-                newResult.Wins = 0;
-                newResult.Losses = 0;
-                validEntries.Add(newResult);
+                textEntries.Add(ent.Text);
 			}
 
         // Determine competion type
@@ -57,7 +53,7 @@ public partial class MainPage : Node
                 GD.Print("2");
                 break;
         }
-        runText = basicCompete(validEntries);
+        runText = basicCompete(textEntries);
 
 		// Swap to print-out panel
         SwapVisible(false);
@@ -82,7 +78,7 @@ public partial class MainPage : Node
 				break;
             // Restart
             case 2:
-                SwapVisible(true);
+                Run();
                 break;
             // Continue
             case 3:
@@ -106,15 +102,26 @@ public partial class MainPage : Node
 	}
 
     // Run a basic competition
-    private string basicCompete(List<results> validEntries)
-	{
+    private string basicCompete(List<string> names)
+    {
         // Variables
         String runText = "";
+        List<simpleTracker> validEntries = new List<simpleTracker>();
+
+        // Store valid entries
+        foreach (string ent in names)
+        {
+            simpleTracker newResult = new simpleTracker();
+            newResult.ID = ent;
+            newResult.Wins = 0;
+            newResult.Losses = 0;
+            validEntries.Add(newResult);
+        }
 
         // Determine results
-        for (int i = 0; i < validEntries.Count; i++)
+        for (int i = 0; i < names.Count; i++)
         {
-            for (int j = 0; j < validEntries.Count; j++)
+            for (int j = 0; j < names.Count; j++)
             {
                 // Skip Self
                 if (i == j)
@@ -137,14 +144,14 @@ public partial class MainPage : Node
         validEntries = validEntries.OrderByDescending(x => x.Wins).ToList();
 
         // Record Entries
-        foreach (results ent in validEntries)
+        foreach (simpleTracker ent in validEntries)
             runText += ("ID: " + ent.ID + ", Score: " + ent.Wins + " W - " + ent.Losses + " L\n");
 
         return runText;
     }
 
-	// Called when the node enters the scene tree for the first time.
-	public override void _Ready()
+    // Called when the node enters the scene tree for the first time.
+    public override void _Ready()
 	{
 		SwapVisible(true);
 
