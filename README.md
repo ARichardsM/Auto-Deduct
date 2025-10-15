@@ -23,4 +23,5 @@ The Automated Deduction Project is based on the website BrantSteele.net, and is 
 - [ ] Mobile Support
 
 ## Future Goals
+
 - [ ] Improved Labels

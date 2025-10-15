@@ -2,21 +2,14 @@ using Godot;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Cryptography.X509Certificates;
 
 public partial class MainPage : Node
 {
+    public DeductorScript z;
+
 	// Variables
 	List<LineEdit> entries = new List<LineEdit>();
-    private class simpleTracker
-    {
-		public simpleTracker()
-		{
-
-		}
-		public string ID;
-        public int Wins;
-        public int Losses;
-    }
 
     // Wipe the entry text
     private void Wipe()
@@ -47,15 +40,16 @@ public partial class MainPage : Node
         switch (compType)
         {
             case 0:
+                
                 GD.Print("1");
                 break;
             case 1:
                 GD.Print("2");
                 break;
         }
-        runText = basicCompete(textEntries);
+        runText = DeductorScript.Basic(textEntries);
 
-		// Swap to print-out panel
+        // Swap to print-out panel
         SwapVisible(false);
 
 		// Write text to screen
@@ -101,59 +95,12 @@ public partial class MainPage : Node
         }
 	}
 
-    // Run a basic competition
-    private string basicCompete(List<string> names)
-    {
-        // Variables
-        String runText = "";
-        List<simpleTracker> validEntries = new List<simpleTracker>();
-
-        // Store valid entries
-        foreach (string ent in names)
-        {
-            simpleTracker newResult = new simpleTracker();
-            newResult.ID = ent;
-            newResult.Wins = 0;
-            newResult.Losses = 0;
-            validEntries.Add(newResult);
-        }
-
-        // Determine results
-        for (int i = 0; i < names.Count; i++)
-        {
-            for (int j = 0; j < names.Count; j++)
-            {
-                // Skip Self
-                if (i == j)
-                    continue;
-
-                // Pick Winner
-                Random rand = new Random();
-                int whoWins = rand.Next(2);
-
-                // Adjust Results
-                validEntries[i].Wins += whoWins;
-                validEntries[j].Losses += whoWins;
-
-                validEntries[i].Losses += (1 - whoWins);
-                validEntries[j].Wins += (1 - whoWins);
-            }
-        }
-
-        // Sort the Entries
-        validEntries = validEntries.OrderByDescending(x => x.Wins).ToList();
-
-        // Record Entries
-        foreach (simpleTracker ent in validEntries)
-            runText += ("ID: " + ent.ID + ", Score: " + ent.Wins + " W - " + ent.Losses + " L\n");
-
-        return runText;
-    }
-
     // Called when the node enters the scene tree for the first time.
     public override void _Ready()
 	{
 		SwapVisible(true);
+
+        DeductorScript.print();
 
         // Load each Line node into the array
         for (int i = 1; i < 6; i++)
