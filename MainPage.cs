@@ -10,6 +10,7 @@ public partial class MainPage : Node
 
 	// Variables
 	List<LineEdit> entries = new List<LineEdit>();
+    string runCode = null;
 
     // Wipe the entry text
     private void Wipe()
@@ -24,30 +25,39 @@ public partial class MainPage : Node
 		// Variables
         List<string> textEntries = new List<string>();
 		String runText = "";
-        int compType;
+        int compType = GetNode<OptionButton>("Panel/Box/ButtonBox/SelectButton").Selected;
+        bool isVerbose = (GetNode<OptionButton>("Panel/Box/ButtonBox/OutputButton").Selected == 1);
 
-		// Store valid entries
+        // Store valid entries
         foreach (LineEdit ent in entries)
 			if (ent.Text != "")
 			{
                 textEntries.Add(ent.Text);
 			}
 
-        // Determine competion type
-        compType = GetNode<OptionButton>("Panel/Box/ButtonBox/SelectButton").Selected;
-
-        // Compete
         switch (compType)
         {
             case 0:
-                
-                GD.Print("1");
+                // Run Basic Competition
+                if (isVerbose)
+                {
+                    (runText, runCode) = DeductorScript.Basic(textEntries, runCode);
+                }
+                else
+                {
+                    runText = DeductorScript.Basic(textEntries);
+                    runCode = "Done";
+                }
                 break;
             case 1:
-                GD.Print("2");
+                GD.Print("Round Robin");
+                runCode = "Done";
+                break;
+            case 2:
+                GD.Print("Double Elimination");
+                runCode = "Done";
                 break;
         }
-        runText = DeductorScript.Basic(textEntries);
 
         // Swap to print-out panel
         SwapVisible(false);
@@ -72,11 +82,19 @@ public partial class MainPage : Node
 				break;
             // Restart
             case 2:
+                runCode = null;
                 Run();
                 break;
             // Continue
             case 3:
-                SwapVisible(true);
+                if (runCode == "Done")
+                {
+                    SwapVisible(true);
+                    runCode = null;
+                    return;
+                }
+
+                Run();
                 break;
         }
 	}
@@ -99,8 +117,6 @@ public partial class MainPage : Node
     public override void _Ready()
 	{
 		SwapVisible(true);
-
-        DeductorScript.print();
 
         // Load each Line node into the array
         for (int i = 1; i < 6; i++)

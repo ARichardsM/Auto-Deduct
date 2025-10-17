@@ -17,9 +17,9 @@ The Automated Deduction Project is based on the website BrantSteele.net, and is 
 - [ ] Additional Competition (Tournaments)
 	- [ ] Round Robin
 	- [ ] Double Elimination
-- [ ] Output Types
-	- [ ] Detailed/Verbose
-	- [ ] Simple/Skip
+- [X] Output Types
+	- [X] Detailed/Verbose
+	- [X] Simple/Skip
 - [ ] Mobile Support
 
 ## Future Goals

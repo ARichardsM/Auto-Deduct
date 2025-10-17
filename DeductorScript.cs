@@ -26,107 +26,104 @@ public partial class DeductorScript
         }
     }
 
-    public static void print()
-	{
-        GD.Print("1");
-    }
-
-    // Run a basic competition
+    // Run a simple basic competition
     public static string Basic(List<string> names)
     {
         // Variables
-        String runText = "";
-        List<simpleTracker> validEntries = new List<simpleTracker>();
+        string runText = "";
+        string runCode = null;
 
-        // Store valid entries
-        foreach (string ent in names)
+        (runText, runCode) = DeductorScript.Basic(names, runCode);
+
+        while (runCode != "Done")
         {
-            simpleTracker newResult = new simpleTracker();
-            newResult.ID = ent;
-            newResult.Wins = 0;
-            newResult.Losses = 0;
-            validEntries.Add(newResult);
+            (runText, runCode) = DeductorScript.Basic(names, runCode);
         }
-
-        // Determine results
-        for (int i = 0; i < names.Count; i++)
-        {
-            for (int j = 0; j < names.Count; j++)
-            {
-                // Skip Self
-                if (i == j)
-                    continue;
-
-                // Pick Winner
-                Random rand = new Random();
-                int whoWins = rand.Next(2);
-
-                // Adjust Results
-                validEntries[i].Wins += whoWins;
-                validEntries[j].Losses += whoWins;
-
-                validEntries[i].Losses += (1 - whoWins);
-                validEntries[j].Wins += (1 - whoWins);
-            }
-        }
-
-        // Sort the Entries
-        validEntries = validEntries.OrderByDescending(x => x.Wins).ToList();
-
-        // Record Entries
-        foreach (simpleTracker ent in validEntries)
-            runText += ("ID: " + ent.ID + ", Score: " + ent.Wins + " W - " + ent.Losses + " L\n");
-
         return runText;
     }
 
 
     // Run a verbose basic competition
-    public static (string, string) BasicV(List<string> names)
+    public static (string, string) Basic(List<string> names, string code)
     {
         // Variables
-        String runText = "";
-        List<simpleTracker> validEntries = new List<simpleTracker>();
+        string runText = "";
+        string runCode = "";
+        int currEnt = -1; 
+        List <simpleTracker> validEntries = new List<simpleTracker>();
 
         // Store valid entries
         foreach (string ent in names)
+            validEntries.Add(new simpleTracker(ent));
+
+        // Decodify run code
+        if (code != null) {
+            currEnt = int.Parse(code.Split("\n")[0]);
+            string[] entResults = code.Split("\n")[1..^1];
+
+            for (int i = 0; i < names.Count; i++)
+            {
+                string[] score = entResults[i].Split(",");
+
+                validEntries[i].Wins = int.Parse(score[0]);
+                validEntries[i].Losses = int.Parse(score[1]);
+            }
+        }
+
+        // Last Run Check
+        if (++currEnt >= names.Count)
         {
-            simpleTracker newResult = new simpleTracker();
-            newResult.ID = ent;
-            newResult.Wins = 0;
-            newResult.Losses = 0;
-            validEntries.Add(newResult);
+            // Sort the Entries
+            validEntries = validEntries.OrderByDescending(x => x.Wins).ToList();
+
+            // Return Summary
+            runText = "Final Results\n";
+            foreach (simpleTracker ent in validEntries)
+                runText += ("ID: " + ent.ID + ", Score: " + ent.Wins + " W - " + ent.Losses + " L\n");
+
+            // Mark Done
+            runCode = "Done";
+
+            return (runText, runCode);
         }
 
         // Determine results
         for (int i = 0; i < names.Count; i++)
         {
-            for (int j = 0; j < names.Count; j++)
-            {
-                // Skip Self
-                if (i == j)
-                    continue;
+            // Skip Self
+            if (i == currEnt)
+                continue;
 
-                // Pick Winner
-                Random rand = new Random();
-                int whoWins = rand.Next(2);
+            // Run 
+            runText += validEntries[currEnt].ID + " VS " + validEntries[i].ID + ": ";
 
-                // Adjust Results
-                validEntries[i].Wins += whoWins;
-                validEntries[j].Losses += whoWins;
+            // Pick Winner
+            Random rand = new Random();
+            int whoWins = rand.Next(2);
 
-                validEntries[i].Losses += (1 - whoWins);
-                validEntries[j].Wins += (1 - whoWins);
-            }
+            // Declare Winner
+            string[] whoWon = { validEntries[currEnt].ID, validEntries[i].ID };
+            runText += whoWon[whoWins] + " Wins!\n";
+
+            // Adjust Results
+            validEntries[i].Wins += whoWins;
+            validEntries[currEnt].Losses += whoWins;
+
+            validEntries[i].Losses += (1 - whoWins);
+            validEntries[currEnt].Wins += (1 - whoWins);
         }
 
-        // Sort the Entries
-        validEntries = validEntries.OrderByDescending(x => x.Wins).ToList();
+        // Mark Progress
+        runCode += currEnt + "\n";
 
-        // Record Entries
+        // Return Results
+        runText += "\nCurrent Results\n";
         foreach (simpleTracker ent in validEntries)
+        {
             runText += ("ID: " + ent.ID + ", Score: " + ent.Wins + " W - " + ent.Losses + " L\n");
+            runCode += (ent.Wins + "," + ent.Losses + "\n");
+        }
 
-        return (runText, "");
+        return (runText, runCode);
     }
 }

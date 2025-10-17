@@ -118,25 +118,37 @@ text = "Run"
 [node name="ButtonBox" type="HBoxContainer" parent="Panel/Box"]
 custom_minimum_size = Vector2(200, 95)
 layout_mode = 2
-theme_override_constants/separation = 7
+theme_override_constants/separation = 10
 
 [node name="WipeButton" type="Button" parent="Panel/Box/ButtonBox"]
-custom_minimum_size = Vector2(195, 0)
+custom_minimum_size = Vector2(142, 0)
 layout_mode = 2
 text = "Wipe"
 
 [node name="SelectButton" type="OptionButton" parent="Panel/Box/ButtonBox"]
-custom_minimum_size = Vector2(195, 0)
+custom_minimum_size = Vector2(142, 0)
+layout_mode = 2
+alignment = 1
+selected = 0
+item_count = 3
+popup/item_0/text = "Basic"
+popup/item_1/text = "Round Robin"
+popup/item_1/id = 1
+popup/item_2/text = "Double Elim"
+popup/item_2/id = 2
+
+[node name="OutputButton" type="OptionButton" parent="Panel/Box/ButtonBox"]
+custom_minimum_size = Vector2(142, 0)
 layout_mode = 2
 alignment = 1
 selected = 0
 item_count = 2
-popup/item_0/text = "Basic"
-popup/item_1/text = "Other"
+popup/item_0/text = "Simple"
+popup/item_1/text = "Verbose"
 popup/item_1/id = 1
 
 [node name="RunButton" type="Button" parent="Panel/Box/ButtonBox"]
-custom_minimum_size = Vector2(195, 0)
+custom_minimum_size = Vector2(142, 0)
 layout_mode = 2
 text = "Run"
 
