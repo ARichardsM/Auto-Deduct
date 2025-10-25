@@ -15,13 +15,13 @@ The Automated Deduction Project is based on the website BrantSteele.net, and is 
 ## Current Objectives
 
 - [ ] Additional Competition (Tournaments)
-	- [ ] Round Robin
-	- [ ] Double Elimination
+	- [X] Round Robin
+	- [ ] Elimination
 - [X] Output Types
 	- [X] Detailed/Verbose
 	- [X] Simple/Skip
-- [ ] Mobile Support
 
 ## Future Goals
 
 - [ ] Improved Labels
+- [ ] Mobile Support

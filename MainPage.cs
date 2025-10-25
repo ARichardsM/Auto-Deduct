@@ -6,8 +6,6 @@ using System.Security.Cryptography.X509Certificates;
 
 public partial class MainPage : Node
 {
-    public DeductorScript z;
-
 	// Variables
 	List<LineEdit> entries = new List<LineEdit>();
     string runCode = null;
@@ -38,23 +36,31 @@ public partial class MainPage : Node
         switch (compType)
         {
             case 0:
-                // Run Basic Competition
+                // Run Single Round Robin Competition
                 if (isVerbose)
                 {
-                    (runText, runCode) = DeductorScript.Basic(textEntries, runCode);
+                    (runText, runCode) = RoundRobinScript.Single(textEntries, runCode);
                 }
                 else
                 {
-                    runText = DeductorScript.Basic(textEntries);
+                    runText = RoundRobinScript.Simplify(textEntries, 1);
                     runCode = "Done";
                 }
                 break;
             case 1:
-                GD.Print("Round Robin");
-                runCode = "Done";
+                // Run Double Round Robin Competition
+                if (isVerbose)
+                {
+                    (runText, runCode) = RoundRobinScript.Double(textEntries, runCode);
+                }
+                else
+                {
+                    runText = RoundRobinScript.Simplify(textEntries, 2);
+                    runCode = "Done";
+                }
                 break;
-            case 2:
-                GD.Print("Double Elimination");
+            default:
+                GD.Print("New Competition");
                 runCode = "Done";
                 break;
         }
