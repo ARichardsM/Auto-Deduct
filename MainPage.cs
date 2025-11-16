@@ -59,6 +59,18 @@ public partial class MainPage : Node
                     runCode = "Done";
                 }
                 break;
+            case 2:
+                // Run Single Elimination Tournament
+                if (isVerbose)
+                {
+                    (runText, runCode) = TournamentScript.SingleElim(textEntries, runCode);
+                }
+                else
+                {
+                    runText = TournamentScript.Simplify(textEntries, 2);
+                    runCode = "Done";
+                }
+                break;
             default:
                 GD.Print("New Competition");
                 runCode = "Done";
