@@ -6,24 +6,45 @@ using System.Collections.Generic;
 public partial class TournamentScript
 {
     // Class to keep track of entity statistics [Tourney] 
-    private class simpleTracker
+    private class resultTracker
     {
         public string ID;
         public int Wins;
-        public int Losses;
+        public bool isEliminated;
 
         // Empty Constructor
-        public simpleTracker()
+        public resultTracker()
         {
             Wins = 0;
-            Losses = 0;
+            isEliminated = false;
         }
 
         // String Constructor
-        public simpleTracker(string name) : this()
+        public resultTracker(string name) : this()
         {
             ID = name;
         }
+    }
+
+    private static void decodify()
+    {
+        // Decodify run code (Depreciated)
+        /*
+        if (code != null)
+        {
+            currEnt = int.Parse(code.Split("\n")[0]);
+            string[] entResults = code.Split("\n")[1..^1];
+
+            for (int i = 0; i < names.Count; i++)
+            {
+                string[] score = entResults[i].Split(",");
+
+                validEntries[i].Wins = int.Parse(score[0]);
+                validEntries[i].Losses = int.Parse(score[1]);
+            }
+        }
+        */
+        return;
     }
 
     // Run a simple competition
@@ -71,34 +92,53 @@ public partial class TournamentScript
             return ("Invalid Number of Entities", "Done");
         }
 
-        GD.Print(names.Count);
-        GD.Print(validNum.Contains(names.Count));
-        return (null, "Done");
-
         // Variables
         string runText = "";
         string runCode = "";
-        int currEnt = -1; 
-        List <simpleTracker> validEntries = new List<simpleTracker>();
+        int currEnt = -1;
+        List<int> competitors = new List<int>();
+        List <resultTracker> validEntries = new List<resultTracker>();
 
         // Store valid entries
         foreach (string ent in names)
-            validEntries.Add(new simpleTracker(ent));
+            validEntries.Add(new resultTracker(ent));
 
         // Decodify run code
-        if (code != null) {
-            currEnt = int.Parse(code.Split("\n")[0]);
-            string[] entResults = code.Split("\n")[1..^1];
+        decodify();
 
-            for (int i = 0; i < names.Count; i++)
-            {
-                string[] score = entResults[i].Split(",");
-
-                validEntries[i].Wins = int.Parse(score[0]);
-                validEntries[i].Losses = int.Parse(score[1]);
-            }
+        for (int i = 0; i < validEntries.Count; i++)
+        {
+            if (validEntries[i].isEliminated == false)
+                competitors.Add(i);
         }
 
+        // Determine results
+        for (int i = 0; i < (competitors.Count / 2); i++)
+        {
+            // Run 
+            runText += validEntries[competitors[i * 2]].ID + " VS " + validEntries[competitors[i * 2 + 1]].ID + ": ";
+
+            // Pick Winner
+            Random rand = new Random();
+            int whoWins = rand.Next(2);
+
+            /*
+            // Declare Winner
+            string[] whoWon = { validEntries[currEnt].ID, validEntries[i].ID };
+            runText += whoWon[whoWins] + " Wins!\n";
+
+            // Adjust Results
+            
+            validEntries[i].Wins += whoWins;
+            validEntries[currEnt].Losses += whoWins;
+
+            validEntries[i].Losses += (1 - whoWins);
+            validEntries[currEnt].Wins += (1 - whoWins);
+            */
+        }
+
+        return (null, "Done");
+        /*
         // Last Run Check
         if (++currEnt >= names.Count)
         {
@@ -107,7 +147,7 @@ public partial class TournamentScript
 
             // Return Summary
             runText = "Final Results\n";
-            foreach (simpleTracker ent in validEntries)
+            foreach (resultTracker ent in validEntries)
                 runText += ("ID: " + ent.ID + ", Score: " + ent.Wins + " W - " + ent.Losses + " L\n");
 
             // Mark Done
@@ -116,42 +156,18 @@ public partial class TournamentScript
             return (runText, runCode);
         }
 
-        // Determine results
-        for (int i = 0; i < names.Count; i++)
-        {
-            // Skip Self
-            if (i == currEnt)
-                continue;
-
-            // Run 
-            runText += validEntries[currEnt].ID + " VS " + validEntries[i].ID + ": ";
-
-            // Pick Winner
-            Random rand = new Random();
-            int whoWins = rand.Next(2);
-
-            // Declare Winner
-            string[] whoWon = { validEntries[currEnt].ID, validEntries[i].ID };
-            runText += whoWon[whoWins] + " Wins!\n";
-
-            // Adjust Results
-            validEntries[i].Wins += whoWins;
-            validEntries[currEnt].Losses += whoWins;
-
-            validEntries[i].Losses += (1 - whoWins);
-            validEntries[currEnt].Wins += (1 - whoWins);
-        }
 
         // Mark Progress
         runCode += currEnt + "\n";
 
         // Return Results
         runText += "\nCurrent Results\n";
-        foreach (simpleTracker ent in validEntries)
+        foreach (resultTracker ent in validEntries)
         {
             runText += ("ID: " + ent.ID + ", Score: " + ent.Wins + " W - " + ent.Losses + " L\n");
             runCode += (ent.Wins + "," + ent.Losses + "\n");
         }
+        */
 
         return (runText, runCode);
     }
