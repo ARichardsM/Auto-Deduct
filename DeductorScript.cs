@@ -26,6 +26,23 @@ public partial class TournamentScript
         }
     }
 
+    // Fisher-Yates Shuffle
+    private static List<int> Shuffle(List<int> list)
+    {
+        Random rand = new Random();
+        int n = list.Count;
+        while (n > 1)
+        {
+            n--;
+            int k = rand.Next(n + 1);
+            int value = list[k];
+            list[k] = list[n];
+            list[n] = value;
+        }
+
+        return list;
+    }
+
     private static void decodify()
     {
         // Decodify run code (Depreciated)
@@ -45,6 +62,19 @@ public partial class TournamentScript
         }
         */
         return;
+    }
+
+    private static string codify()
+    {
+        // Codify run code (Depreciated)
+        /*
+        foreach (resultTracker ent in validEntries)
+        {
+            runText += ("ID: " + ent.ID + ", Score: " + ent.Wins + " W - " + ent.Losses + " L\n");
+            runCode += (ent.Wins + "," + ent.Losses + "\n");
+        }
+        */
+        return "";
     }
 
     // Run a simple competition
@@ -106,22 +136,42 @@ public partial class TournamentScript
         // Decodify run code
         decodify();
 
+        // Record Valid Competitors
         for (int i = 0; i < validEntries.Count; i++)
         {
             if (validEntries[i].isEliminated == false)
                 competitors.Add(i);
         }
 
+        // Shuffle
+        competitors = Shuffle(competitors);
+
         // Determine results
         for (int i = 0; i < (competitors.Count / 2); i++)
         {
-            // Run 
+            // Determine Current Competitors 
             runText += validEntries[competitors[i * 2]].ID + " VS " + validEntries[competitors[i * 2 + 1]].ID + ": ";
 
             // Pick Winner
             Random rand = new Random();
             int whoWins = rand.Next(2);
 
+            
+
+            // Determine Winner
+            switch (whoWins)
+            {
+                case 0:
+                    validEntries[competitors[i * 2]].Wins++;
+                    runText += validEntries[competitors[i * 2]].ID + " Wins!\n";
+                    validEntries[competitors[i * 2 + 1]].isEliminated = true;
+                    break;
+                case 1:
+                    validEntries[competitors[i * 2 + 1]].Wins++;
+                    runText += validEntries[competitors[i * 2 + 1]].ID + " Wins!\n";
+                    validEntries[competitors[i * 2]].isEliminated = true;
+                    break;
+            }
             /*
             // Declare Winner
             string[] whoWon = { validEntries[currEnt].ID, validEntries[i].ID };
@@ -137,7 +187,8 @@ public partial class TournamentScript
             */
         }
 
-        return (null, "Done");
+        //return (null, "Done");
+
         /*
         // Last Run Check
         if (++currEnt >= names.Count)
@@ -155,19 +206,32 @@ public partial class TournamentScript
 
             return (runText, runCode);
         }
-
+        */
 
         // Mark Progress
-        runCode += currEnt + "\n";
+        //runCode += currEnt + "\n";
 
         // Return Results
         runText += "\nCurrent Results\n";
         foreach (resultTracker ent in validEntries)
         {
-            runText += ("ID: " + ent.ID + ", Score: " + ent.Wins + " W - " + ent.Losses + " L\n");
-            runCode += (ent.Wins + "," + ent.Losses + "\n");
+            runText += ("ID: " + ent.ID);
+
+            switch (ent.isEliminated)
+            {
+                case true:
+                    runText += (", Status: Eliminated");
+                    break;
+                case false:
+                    runText += (", Status: Valid");
+                    break;
+            }
+
+            runText += (", Score: " + ent.Wins + "\n");
+            //runCode += (ent.Wins + "," + ent.Losses + "\n");
         }
-        */
+
+        runCode = codify();
 
         return (runText, runCode);
     }
