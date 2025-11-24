@@ -43,38 +43,40 @@ public partial class TournamentScript
         return list;
     }
 
-    private static void decodify()
+    // Decodify run code
+    private static void decodify(List<resultTracker> entities, string runCode)
     {
-        // Decodify run code (Depreciated)
-        /*
-        if (code != null)
+        // Check for first run
+        if (runCode != null)
         {
-            currEnt = int.Parse(code.Split("\n")[0]);
-            string[] entResults = code.Split("\n")[1..^1];
+            // Split the run code by entities
+            string[] entResults = runCode.Split("\n");
 
-            for (int i = 0; i < names.Count; i++)
+            for (int i = 0; i < entities.Count; i++)
             {
+                // Split the entity code
                 string[] score = entResults[i].Split(",");
 
-                validEntries[i].Wins = int.Parse(score[0]);
-                validEntries[i].Losses = int.Parse(score[1]);
+                // Assign encoded values
+                entities[i].Wins = int.Parse(score[0]);
+                entities[i].isEliminated = bool.Parse(score[1]);
             }
         }
-        */
         return;
     }
 
-    private static string codify()
+    // Codify run code
+    private static string codify(List<resultTracker> entities)
     {
-        // Codify run code (Depreciated)
-        /*
-        foreach (resultTracker ent in validEntries)
-        {
-            runText += ("ID: " + ent.ID + ", Score: " + ent.Wins + " W - " + ent.Losses + " L\n");
-            runCode += (ent.Wins + "," + ent.Losses + "\n");
-        }
-        */
-        return "";
+        // Initialize
+        string returnStr = "";
+
+        // Encode each entity
+        foreach (resultTracker ent in entities)
+            returnStr += (ent.Wins + "," + ent.isEliminated + "\n");
+
+        // Return encoded
+        return returnStr;
     }
 
     // Run a simple competition
@@ -125,7 +127,6 @@ public partial class TournamentScript
         // Variables
         string runText = "";
         string runCode = "";
-        int currEnt = -1;
         List<int> competitors = new List<int>();
         List <resultTracker> validEntries = new List<resultTracker>();
 
@@ -134,13 +135,31 @@ public partial class TournamentScript
             validEntries.Add(new resultTracker(ent));
 
         // Decodify run code
-        decodify();
+        decodify(validEntries, code);
 
         // Record Valid Competitors
         for (int i = 0; i < validEntries.Count; i++)
         {
             if (validEntries[i].isEliminated == false)
                 competitors.Add(i);
+        }
+
+        // Last Run Check
+        if (competitors.Count <= 1)
+        {
+            // Sort the Entries
+            validEntries = validEntries.OrderByDescending(x => x.Wins).ToList();
+
+            // Return Summary
+            runText = "Final Results\n";
+            foreach (resultTracker ent in validEntries)
+                runText += ("ID: " + ent.ID + ", Score: " + ent.Wins + " W\n");
+
+            // Mark Done
+            runCode = "Done";
+
+            // Return
+            return (runText, runCode);
         }
 
         // Shuffle
@@ -156,8 +175,6 @@ public partial class TournamentScript
             Random rand = new Random();
             int whoWins = rand.Next(2);
 
-            
-
             // Determine Winner
             switch (whoWins)
             {
@@ -172,44 +189,7 @@ public partial class TournamentScript
                     validEntries[competitors[i * 2]].isEliminated = true;
                     break;
             }
-            /*
-            // Declare Winner
-            string[] whoWon = { validEntries[currEnt].ID, validEntries[i].ID };
-            runText += whoWon[whoWins] + " Wins!\n";
-
-            // Adjust Results
-            
-            validEntries[i].Wins += whoWins;
-            validEntries[currEnt].Losses += whoWins;
-
-            validEntries[i].Losses += (1 - whoWins);
-            validEntries[currEnt].Wins += (1 - whoWins);
-            */
         }
-
-        //return (null, "Done");
-
-        /*
-        // Last Run Check
-        if (++currEnt >= names.Count)
-        {
-            // Sort the Entries
-            validEntries = validEntries.OrderByDescending(x => x.Wins).ToList();
-
-            // Return Summary
-            runText = "Final Results\n";
-            foreach (resultTracker ent in validEntries)
-                runText += ("ID: " + ent.ID + ", Score: " + ent.Wins + " W - " + ent.Losses + " L\n");
-
-            // Mark Done
-            runCode = "Done";
-
-            return (runText, runCode);
-        }
-        */
-
-        // Mark Progress
-        //runCode += currEnt + "\n";
 
         // Return Results
         runText += "\nCurrent Results\n";
@@ -228,11 +208,12 @@ public partial class TournamentScript
             }
 
             runText += (", Score: " + ent.Wins + "\n");
-            //runCode += (ent.Wins + "," + ent.Losses + "\n");
         }
 
-        runCode = codify();
+        // Create a run code
+        runCode = codify(validEntries);
 
+        // Return
         return (runText, runCode);
     }
 }
