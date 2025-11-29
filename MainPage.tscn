@@ -132,12 +132,14 @@ alignment = 1
 autowrap_mode = 2
 selected = 0
 fit_to_longest_item = false
-item_count = 3
+item_count = 4
 popup/item_0/text = "Single Round Robin"
 popup/item_1/text = "Double Round Robin"
 popup/item_1/id = 1
 popup/item_2/text = "Single Elimination"
 popup/item_2/id = 2
+popup/item_3/text = "Double Elimination"
+popup/item_3/id = 3
 
 [node name="OutputButton" type="OptionButton" parent="Panel/Box/ButtonBox"]
 custom_minimum_size = Vector2(142, 0)

@@ -27,7 +27,7 @@ public partial class RoundRobinScript
     }
 
     // Run a simple competition
-    public static string Simplify(List<string> names, byte elimNum)
+    public static (string, string) Simplify(List<string> names, byte elimNum)
     {
         // Variables
         string runText = "";
@@ -52,7 +52,7 @@ public partial class RoundRobinScript
         } while (runCode != "Done");
 
         // Return results
-        return runText;
+        return (runText, runCode);
     }
 
     // Run a verbose double round robin competition

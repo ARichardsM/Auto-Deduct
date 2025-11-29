@@ -38,38 +38,34 @@ public partial class MainPage : Node
             case 0:
                 // Run Single Round Robin Competition
                 if (isVerbose)
-                {
                     (runText, runCode) = RoundRobinScript.Single(textEntries, runCode);
-                }
                 else
-                {
-                    runText = RoundRobinScript.Simplify(textEntries, 1);
-                    runCode = "Done";
-                }
+                    (runText, runCode) = RoundRobinScript.Simplify(textEntries, 1);
+
                 break;
             case 1:
                 // Run Double Round Robin Competition
                 if (isVerbose)
-                {
                     (runText, runCode) = RoundRobinScript.Double(textEntries, runCode);
-                }
                 else
-                {
-                    runText = RoundRobinScript.Simplify(textEntries, 2);
-                    runCode = "Done";
-                }
+                    (runText, runCode) = RoundRobinScript.Simplify(textEntries, 2);
+
                 break;
             case 2:
                 // Run Single Elimination Tournament
                 if (isVerbose)
-                {
-                    (runText, runCode) = TournamentScript.SingleElim(textEntries, runCode);
-                }
+                    (runText, runCode) = TournamentScript.Single(textEntries, runCode);
                 else
-                {
-                    runText = TournamentScript.Simplify(textEntries, 2);
-                    runCode = "Done";
-                }
+                    (runText, runCode) = TournamentScript.Simplify(textEntries, 1);
+
+                break;
+            case 3:
+                // Run Double Elimination Tournament
+                if (isVerbose)
+                    (runText, runCode) = TournamentScript.Double(textEntries, runCode);
+                else
+                    (runText, runCode) = TournamentScript.Simplify(textEntries, 2);
+
                 break;
             default:
                 GD.Print("New Competition");
