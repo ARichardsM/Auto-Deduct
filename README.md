@@ -18,17 +18,11 @@ Uses: Godot, C#
 
 ## Current Objectives
 
-- [X] Additional Competition (Tournaments)
-	- [X] Round Robin
-	- [X] Elimination
-- [X] Output Types
-	- [X] Detailed/Verbose
-	- [X] Simple/Skip
+- [ ] Improved Labels
+- [ ] Adjustable Entry Lines
 
 ## Future Goals
 
-- [ ] Improved Labels
-- [ ] Adjustable Entry Lines
 - [ ] Mobile Support
 - [ ] Additional Competition (Simple Brante Steele)
 	- [ ] Among Us Simulator
