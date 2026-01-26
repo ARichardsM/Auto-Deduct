@@ -24,5 +24,6 @@ Uses: Godot, C#
 ## Future Goals
 
 - [ ] Mobile Support
+- [ ] Additional Competition (Group Based)
 - [ ] Additional Competition (Simple Brante Steele)
 	- [ ] Among Us Simulator

@@ -8,6 +8,7 @@ public partial class MainPage : Node
 {
 	// Variables
 	List<LineEdit> entries = new List<LineEdit>();
+    RichTextLabel ReadOutLabel = null;
     string runCode = null;
 
     // Wipe the entry text
@@ -131,6 +132,11 @@ public partial class MainPage : Node
     public override void _Ready()
 	{
 		SwapVisible(true);
+
+        GetNode<RichTextLabel>("Panel2/Box/RichTextLabel").AppendText("[color=#ffff0f]This text is white[/color]");
+
+        // Load the read out panel
+        ReadOutLabel = GetNode<RichTextLabel>("Panel2/Box/OutputLabel");
 
         // Load each Line node into the array
         for (int i = 1; i < 6; i++)
