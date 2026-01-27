@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=3 uid="uid://hrmvsm02sm64"]
+[gd_scene load_steps=3 format=3 uid="uid://hrmvsm02sm64"]
 
 [ext_resource type="Script" path="res://MainPage.cs" id="1_4tr5t"]
+[ext_resource type="PackedScene" uid="uid://p8cb3wds2vgc" path="res://InputLabel.tscn" id="2_hwos7"]
 
 [node name="Control" type="Control"]
 layout_mode = 3
@@ -11,8 +12,7 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_4tr5t")
 
-[node name="Panel" type="Panel" parent="."]
-visible = false
+[node name="InputPanel" type="Panel" parent="."]
 z_index = 99
 layout_mode = 0
 offset_left = 271.0
@@ -20,7 +20,7 @@ offset_top = 14.0
 offset_right = 881.0
 offset_bottom = 634.0
 
-[node name="Box" type="VBoxContainer" parent="Panel"]
+[node name="Box" type="VBoxContainer" parent="InputPanel"]
 layout_mode = 0
 offset_left = 5.0
 offset_top = 10.0
@@ -29,104 +29,118 @@ offset_bottom = 610.0
 theme_override_constants/separation = 5
 alignment = 1
 
-[node name="Split1" type="HSplitContainer" parent="Panel/Box"]
+[node name="Split7" type="HBoxContainer" parent="InputPanel/Box"]
+custom_minimum_size = Vector2(0, 95)
+layout_mode = 2
+theme_override_constants/separation = 2
+
+[node name="Control" parent="InputPanel/Box/Split7" instance=ExtResource("2_hwos7")]
+custom_minimum_size = Vector2(300, 0)
+layout_mode = 2
+
+[node name="Control2" parent="InputPanel/Box/Split7" instance=ExtResource("2_hwos7")]
+custom_minimum_size = Vector2(300, 0)
+layout_mode = 2
+
+[node name="Split1" type="HSplitContainer" parent="InputPanel/Box"]
+visible = false
 custom_minimum_size = Vector2(0, 95)
 layout_mode = 2
 collapsed = true
 
-[node name="LineEdit1" type="LineEdit" parent="Panel/Box/Split1"]
+[node name="LineEdit1" type="LineEdit" parent="InputPanel/Box/Split1"]
 custom_minimum_size = Vector2(300, 0)
 layout_mode = 2
 placeholder_text = "Temp Text"
 
-[node name="LineEdit2" type="LineEdit" parent="Panel/Box/Split1"]
+[node name="LineEdit2" type="LineEdit" parent="InputPanel/Box/Split1"]
 layout_mode = 2
 placeholder_text = "Temp Text"
 
-[node name="Split2" type="HSplitContainer" parent="Panel/Box"]
+[node name="Split2" type="HSplitContainer" parent="InputPanel/Box"]
 custom_minimum_size = Vector2(300, 95)
 layout_mode = 2
 collapsed = true
 
-[node name="LineEdit1" type="LineEdit" parent="Panel/Box/Split2"]
+[node name="LineEdit1" type="LineEdit" parent="InputPanel/Box/Split2"]
 custom_minimum_size = Vector2(300, 95)
 layout_mode = 2
 placeholder_text = "Temp Text"
 
-[node name="LineEdit2" type="LineEdit" parent="Panel/Box/Split2"]
+[node name="LineEdit2" type="LineEdit" parent="InputPanel/Box/Split2"]
 custom_minimum_size = Vector2(0, 95)
 layout_mode = 2
 placeholder_text = "Temp Text"
 
-[node name="Split3" type="HSplitContainer" parent="Panel/Box"]
+[node name="Split3" type="HSplitContainer" parent="InputPanel/Box"]
 custom_minimum_size = Vector2(300, 95)
 layout_mode = 2
 collapsed = true
 
-[node name="LineEdit1" type="LineEdit" parent="Panel/Box/Split3"]
+[node name="LineEdit1" type="LineEdit" parent="InputPanel/Box/Split3"]
 custom_minimum_size = Vector2(300, 0)
 layout_mode = 2
 placeholder_text = "Temp Text"
 
-[node name="LineEdit2" type="LineEdit" parent="Panel/Box/Split3"]
+[node name="LineEdit2" type="LineEdit" parent="InputPanel/Box/Split3"]
 layout_mode = 2
 placeholder_text = "Temp Text"
 
-[node name="Split4" type="HSplitContainer" parent="Panel/Box"]
+[node name="Split4" type="HSplitContainer" parent="InputPanel/Box"]
 custom_minimum_size = Vector2(300, 95)
 layout_mode = 2
 collapsed = true
 
-[node name="LineEdit1" type="LineEdit" parent="Panel/Box/Split4"]
+[node name="LineEdit1" type="LineEdit" parent="InputPanel/Box/Split4"]
 custom_minimum_size = Vector2(300, 0)
 layout_mode = 2
 placeholder_text = "Temp Text"
 
-[node name="LineEdit2" type="LineEdit" parent="Panel/Box/Split4"]
+[node name="LineEdit2" type="LineEdit" parent="InputPanel/Box/Split4"]
 layout_mode = 2
 placeholder_text = "Temp Text"
 
-[node name="Split5" type="HSplitContainer" parent="Panel/Box"]
+[node name="Split5" type="HSplitContainer" parent="InputPanel/Box"]
 custom_minimum_size = Vector2(300, 95)
 layout_mode = 2
 collapsed = true
 
-[node name="LineEdit1" type="LineEdit" parent="Panel/Box/Split5"]
+[node name="LineEdit1" type="LineEdit" parent="InputPanel/Box/Split5"]
 custom_minimum_size = Vector2(300, 0)
 layout_mode = 2
 placeholder_text = "Temp Text"
 
-[node name="LineEdit2" type="LineEdit" parent="Panel/Box/Split5"]
+[node name="LineEdit2" type="LineEdit" parent="InputPanel/Box/Split5"]
 layout_mode = 2
 placeholder_text = "Temp Text"
 
-[node name="Split6" type="HSplitContainer" parent="Panel/Box"]
+[node name="Split6" type="HSplitContainer" parent="InputPanel/Box"]
 visible = false
 clip_contents = true
 custom_minimum_size = Vector2(300, 95)
 layout_mode = 2
 collapsed = true
 
-[node name="Button0" type="Button" parent="Panel/Box/Split6"]
+[node name="Button0" type="Button" parent="InputPanel/Box/Split6"]
 custom_minimum_size = Vector2(300, 0)
 layout_mode = 2
 text = "Wipe"
 
-[node name="Button1" type="Button" parent="Panel/Box/Split6"]
+[node name="Button1" type="Button" parent="InputPanel/Box/Split6"]
 layout_mode = 2
 text = "Run"
 
-[node name="ButtonBox" type="HBoxContainer" parent="Panel/Box"]
+[node name="ButtonBox" type="HBoxContainer" parent="InputPanel/Box"]
 custom_minimum_size = Vector2(200, 95)
 layout_mode = 2
 theme_override_constants/separation = 10
 
-[node name="WipeButton" type="Button" parent="Panel/Box/ButtonBox"]
+[node name="WipeButton" type="Button" parent="InputPanel/Box/ButtonBox"]
 custom_minimum_size = Vector2(142, 0)
 layout_mode = 2
 text = "Wipe"
 
-[node name="SelectButton" type="OptionButton" parent="Panel/Box/ButtonBox"]
+[node name="SelectButton" type="OptionButton" parent="InputPanel/Box/ButtonBox"]
 custom_minimum_size = Vector2(142, 0)
 layout_mode = 2
 alignment = 1
@@ -142,7 +156,7 @@ popup/item_2/id = 2
 popup/item_3/text = "Double Elimination"
 popup/item_3/id = 3
 
-[node name="OutputButton" type="OptionButton" parent="Panel/Box/ButtonBox"]
+[node name="OutputButton" type="OptionButton" parent="InputPanel/Box/ButtonBox"]
 custom_minimum_size = Vector2(142, 0)
 layout_mode = 2
 alignment = 1
@@ -152,12 +166,13 @@ popup/item_0/text = "Simple"
 popup/item_1/text = "Verbose"
 popup/item_1/id = 1
 
-[node name="RunButton" type="Button" parent="Panel/Box/ButtonBox"]
+[node name="RunButton" type="Button" parent="InputPanel/Box/ButtonBox"]
 custom_minimum_size = Vector2(142, 0)
 layout_mode = 2
 text = "Run"
 
-[node name="Panel2" type="Panel" parent="."]
+[node name="OutputPanel" type="Panel" parent="."]
+visible = false
 z_index = 99
 layout_mode = 0
 offset_left = 271.0
@@ -165,7 +180,7 @@ offset_top = 14.0
 offset_right = 881.0
 offset_bottom = 634.0
 
-[node name="Box" type="VBoxContainer" parent="Panel2"]
+[node name="Box" type="VBoxContainer" parent="OutputPanel"]
 layout_mode = 0
 offset_left = 5.0
 offset_top = 10.0
@@ -173,32 +188,27 @@ offset_right = 605.0
 offset_bottom = 610.0
 theme_override_constants/separation = 5
 
-[node name="Label" type="Label" parent="Panel2/Box"]
-visible = false
+[node name="Label" type="RichTextLabel" parent="OutputPanel/Box"]
 custom_minimum_size = Vector2(300, 500)
 layout_mode = 2
 
-[node name="RichTextLabel" type="RichTextLabel" parent="Panel2/Box"]
-custom_minimum_size = Vector2(300, 500)
-layout_mode = 2
-
-[node name="Split6" type="HSplitContainer" parent="Panel2/Box"]
+[node name="Split" type="HSplitContainer" parent="OutputPanel/Box"]
 custom_minimum_size = Vector2(300, 95)
 layout_mode = 2
 collapsed = true
 
-[node name="Button0" type="Button" parent="Panel2/Box/Split6"]
+[node name="ButtonL" type="Button" parent="OutputPanel/Box/Split"]
 custom_minimum_size = Vector2(300, 0)
 layout_mode = 2
 text = "Restart"
 
-[node name="Button1" type="Button" parent="Panel2/Box/Split6"]
+[node name="ButtonR" type="Button" parent="OutputPanel/Box/Split"]
 layout_mode = 2
 text = "Continue"
 
-[connection signal="pressed" from="Panel/Box/Split6/Button0" to="." method="ButtonPressed" binds= [0]]
-[connection signal="pressed" from="Panel/Box/Split6/Button1" to="." method="ButtonPressed" binds= [1]]
-[connection signal="pressed" from="Panel/Box/ButtonBox/WipeButton" to="." method="ButtonPressed" binds= [0]]
-[connection signal="pressed" from="Panel/Box/ButtonBox/RunButton" to="." method="ButtonPressed" binds= [1]]
-[connection signal="pressed" from="Panel2/Box/Split6/Button0" to="." method="ButtonPressed" binds= [2]]
-[connection signal="pressed" from="Panel2/Box/Split6/Button1" to="." method="ButtonPressed" binds= [3]]
+[connection signal="pressed" from="InputPanel/Box/Split6/Button0" to="." method="ButtonPressed" binds= [0]]
+[connection signal="pressed" from="InputPanel/Box/Split6/Button1" to="." method="ButtonPressed" binds= [1]]
+[connection signal="pressed" from="InputPanel/Box/ButtonBox/WipeButton" to="." method="ButtonPressed" binds= [0]]
+[connection signal="pressed" from="InputPanel/Box/ButtonBox/RunButton" to="." method="ButtonPressed" binds= [1]]
+[connection signal="pressed" from="OutputPanel/Box/Split/ButtonL" to="." method="ButtonPressed" binds= [2]]
+[connection signal="pressed" from="OutputPanel/Box/Split/ButtonR" to="." method="ButtonPressed" binds= [3]]

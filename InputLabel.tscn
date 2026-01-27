@@ -1,0 +1,27 @@
+[gd_scene format=3 uid="uid://p8cb3wds2vgc"]
+
+[node name="Control" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Box" type="HBoxContainer" parent="."]
+custom_minimum_size = Vector2(300, 0)
+offset_right = 300.0
+offset_bottom = 95.0
+theme_override_constants/separation = 2
+
+[node name="Text" type="LineEdit" parent="Box"]
+custom_minimum_size = Vector2(248, 0)
+layout_mode = 2
+placeholder_text = "Temp Text"
+
+[node name="Center" type="CenterContainer" parent="Box"]
+layout_mode = 2
+
+[node name="Color" type="ColorPickerButton" parent="Box/Center"]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2

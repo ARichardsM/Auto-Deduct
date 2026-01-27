@@ -1,8 +1,6 @@
 using Godot;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Security.Cryptography.X509Certificates;
 
 public partial class MainPage : Node
 {
@@ -24,8 +22,8 @@ public partial class MainPage : Node
 		// Variables
         List<string> textEntries = new List<string>();
 		String runText = "";
-        int compType = GetNode<OptionButton>("Panel/Box/ButtonBox/SelectButton").Selected;
-        bool isVerbose = (GetNode<OptionButton>("Panel/Box/ButtonBox/OutputButton").Selected == 1);
+        int compType = GetNode<OptionButton>("InputPanel/Box/ButtonBox/SelectButton").Selected;
+        bool isVerbose = (GetNode<OptionButton>("InputPanel/Box/ButtonBox/OutputButton").Selected == 1);
 
         // Store valid entries
         foreach (LineEdit ent in entries)
@@ -78,8 +76,8 @@ public partial class MainPage : Node
         SwapVisible(false);
 
 		// Write text to screen
-		Label screenText = GetNode<Label>("Panel2/Box/Label");
-		screenText.Text = runText;
+		//Label screenText = GetNode<Label>("Panel2/Box/Label");
+        ReadOutLabel.Text = runText;
     }
 
     // Handle button presses
@@ -119,12 +117,12 @@ public partial class MainPage : Node
 	{
 		if (isSetup)
 		{
-            GetNode<Panel>("Panel").Visible = true;
-            GetNode<Panel>("Panel2").Visible = false;
+            GetNode<Panel>("InputPanel").Visible = true;
+            GetNode<Panel>("OutputPanel").Visible = false;
         } else
 		{
-            GetNode<Panel>("Panel").Visible = false;
-            GetNode<Panel>("Panel2").Visible = true;
+            GetNode<Panel>("InputPanel").Visible = false;
+            GetNode<Panel>("OutputPanel").Visible = true;
         }
 	}
 
@@ -133,15 +131,16 @@ public partial class MainPage : Node
 	{
 		SwapVisible(true);
 
-        GetNode<RichTextLabel>("Panel2/Box/RichTextLabel").AppendText("[color=#ffff0f]This text is white[/color]");
+        //GetNode<RichTextLabel>("Panel2/Box/RichTextLabel").AppendText("[color=#ffff0f]This text is white[/color]");
+        GetNode<LineEdit>("InputPanel/Box/Split7/Control/Box/Text").Text = "WOW";
 
         // Load the read out panel
-        ReadOutLabel = GetNode<RichTextLabel>("Panel2/Box/OutputLabel");
+        ReadOutLabel = GetNode<RichTextLabel>("OutputPanel/Box/Label");
 
         // Load each Line node into the array
         for (int i = 1; i < 6; i++)
             for (int j = 1; j < 3; j++)
-                entries.Add(GetNode<LineEdit>("Panel/Box/Split" + i + "/LineEdit" + j));
+                entries.Add(GetNode<LineEdit>("InputPanel/Box/Split" + i + "/LineEdit" + j));
 	}
 
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
