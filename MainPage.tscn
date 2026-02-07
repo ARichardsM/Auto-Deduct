@@ -29,106 +29,70 @@ offset_bottom = 610.0
 theme_override_constants/separation = 5
 alignment = 1
 
-[node name="Split7" type="HBoxContainer" parent="InputPanel/Box"]
+[node name="Split0" type="HBoxContainer" parent="InputPanel/Box"]
 custom_minimum_size = Vector2(0, 95)
 layout_mode = 2
 theme_override_constants/separation = 2
 
-[node name="Control" parent="InputPanel/Box/Split7" instance=ExtResource("2_hwos7")]
+[node name="Control0" parent="InputPanel/Box/Split0" instance=ExtResource("2_hwos7")]
 custom_minimum_size = Vector2(300, 0)
 layout_mode = 2
 
-[node name="Control2" parent="InputPanel/Box/Split7" instance=ExtResource("2_hwos7")]
+[node name="Control1" parent="InputPanel/Box/Split0" instance=ExtResource("2_hwos7")]
 custom_minimum_size = Vector2(300, 0)
 layout_mode = 2
 
-[node name="Split1" type="HSplitContainer" parent="InputPanel/Box"]
-visible = false
+[node name="Split1" type="HBoxContainer" parent="InputPanel/Box"]
 custom_minimum_size = Vector2(0, 95)
 layout_mode = 2
-collapsed = true
+theme_override_constants/separation = 2
 
-[node name="LineEdit1" type="LineEdit" parent="InputPanel/Box/Split1"]
+[node name="Control0" parent="InputPanel/Box/Split1" instance=ExtResource("2_hwos7")]
 custom_minimum_size = Vector2(300, 0)
 layout_mode = 2
-placeholder_text = "Temp Text"
 
-[node name="LineEdit2" type="LineEdit" parent="InputPanel/Box/Split1"]
+[node name="Control1" parent="InputPanel/Box/Split1" instance=ExtResource("2_hwos7")]
+custom_minimum_size = Vector2(300, 0)
 layout_mode = 2
-placeholder_text = "Temp Text"
 
-[node name="Split2" type="HSplitContainer" parent="InputPanel/Box"]
-custom_minimum_size = Vector2(300, 95)
-layout_mode = 2
-collapsed = true
-
-[node name="LineEdit1" type="LineEdit" parent="InputPanel/Box/Split2"]
-custom_minimum_size = Vector2(300, 95)
-layout_mode = 2
-placeholder_text = "Temp Text"
-
-[node name="LineEdit2" type="LineEdit" parent="InputPanel/Box/Split2"]
+[node name="Split2" type="HBoxContainer" parent="InputPanel/Box"]
 custom_minimum_size = Vector2(0, 95)
 layout_mode = 2
-placeholder_text = "Temp Text"
+theme_override_constants/separation = 2
 
-[node name="Split3" type="HSplitContainer" parent="InputPanel/Box"]
-custom_minimum_size = Vector2(300, 95)
-layout_mode = 2
-collapsed = true
-
-[node name="LineEdit1" type="LineEdit" parent="InputPanel/Box/Split3"]
+[node name="Control0" parent="InputPanel/Box/Split2" instance=ExtResource("2_hwos7")]
 custom_minimum_size = Vector2(300, 0)
 layout_mode = 2
-placeholder_text = "Temp Text"
 
-[node name="LineEdit2" type="LineEdit" parent="InputPanel/Box/Split3"]
-layout_mode = 2
-placeholder_text = "Temp Text"
-
-[node name="Split4" type="HSplitContainer" parent="InputPanel/Box"]
-custom_minimum_size = Vector2(300, 95)
-layout_mode = 2
-collapsed = true
-
-[node name="LineEdit1" type="LineEdit" parent="InputPanel/Box/Split4"]
+[node name="Control1" parent="InputPanel/Box/Split2" instance=ExtResource("2_hwos7")]
 custom_minimum_size = Vector2(300, 0)
 layout_mode = 2
-placeholder_text = "Temp Text"
 
-[node name="LineEdit2" type="LineEdit" parent="InputPanel/Box/Split4"]
+[node name="Split3" type="HBoxContainer" parent="InputPanel/Box"]
+custom_minimum_size = Vector2(0, 95)
 layout_mode = 2
-placeholder_text = "Temp Text"
+theme_override_constants/separation = 2
 
-[node name="Split5" type="HSplitContainer" parent="InputPanel/Box"]
-custom_minimum_size = Vector2(300, 95)
-layout_mode = 2
-collapsed = true
-
-[node name="LineEdit1" type="LineEdit" parent="InputPanel/Box/Split5"]
+[node name="Control0" parent="InputPanel/Box/Split3" instance=ExtResource("2_hwos7")]
 custom_minimum_size = Vector2(300, 0)
 layout_mode = 2
-placeholder_text = "Temp Text"
 
-[node name="LineEdit2" type="LineEdit" parent="InputPanel/Box/Split5"]
-layout_mode = 2
-placeholder_text = "Temp Text"
-
-[node name="Split6" type="HSplitContainer" parent="InputPanel/Box"]
-visible = false
-clip_contents = true
-custom_minimum_size = Vector2(300, 95)
-layout_mode = 2
-collapsed = true
-
-[node name="Button0" type="Button" parent="InputPanel/Box/Split6"]
+[node name="Control1" parent="InputPanel/Box/Split3" instance=ExtResource("2_hwos7")]
 custom_minimum_size = Vector2(300, 0)
 layout_mode = 2
-text = "Wipe"
 
-[node name="Button1" type="Button" parent="InputPanel/Box/Split6"]
+[node name="Split4" type="HBoxContainer" parent="InputPanel/Box"]
+custom_minimum_size = Vector2(0, 95)
 layout_mode = 2
-text = "Run"
+theme_override_constants/separation = 2
+
+[node name="Control0" parent="InputPanel/Box/Split4" instance=ExtResource("2_hwos7")]
+custom_minimum_size = Vector2(300, 0)
+layout_mode = 2
+
+[node name="Control1" parent="InputPanel/Box/Split4" instance=ExtResource("2_hwos7")]
+custom_minimum_size = Vector2(300, 0)
+layout_mode = 2
 
 [node name="ButtonBox" type="HBoxContainer" parent="InputPanel/Box"]
 custom_minimum_size = Vector2(200, 95)
@@ -206,8 +170,6 @@ text = "Restart"
 layout_mode = 2
 text = "Continue"
 
-[connection signal="pressed" from="InputPanel/Box/Split6/Button0" to="." method="ButtonPressed" binds= [0]]
-[connection signal="pressed" from="InputPanel/Box/Split6/Button1" to="." method="ButtonPressed" binds= [1]]
 [connection signal="pressed" from="InputPanel/Box/ButtonBox/WipeButton" to="." method="ButtonPressed" binds= [0]]
 [connection signal="pressed" from="InputPanel/Box/ButtonBox/RunButton" to="." method="ButtonPressed" binds= [1]]
 [connection signal="pressed" from="OutputPanel/Box/Split/ButtonL" to="." method="ButtonPressed" binds= [2]]

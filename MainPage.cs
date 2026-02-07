@@ -6,6 +6,7 @@ public partial class MainPage : Node
 {
 	// Variables
 	List<LineEdit> entries = new List<LineEdit>();
+    List<ColorPickerButton> entryColor = new List<ColorPickerButton>();
     RichTextLabel ReadOutLabel = null;
     string runCode = null;
 
@@ -129,22 +130,34 @@ public partial class MainPage : Node
     // Called when the node enters the scene tree for the first time.
     public override void _Ready()
 	{
-		SwapVisible(true);
+        // Entry addresses
+        const string entryText = "/Box/Text";
+        const string entryColors = "/Box/Center/Color";
+
+        SwapVisible(true);
 
         //GetNode<RichTextLabel>("Panel2/Box/RichTextLabel").AppendText("[color=#ffff0f]This text is white[/color]");
-        GetNode<LineEdit>("InputPanel/Box/Split7/Control/Box/Text").Text = "WOW";
+        //GetNode<LineEdit>("InputPanel/Box/Split0/Control0/Box/Text").Text = "WOW";
 
         // Load the read out panel
         ReadOutLabel = GetNode<RichTextLabel>("OutputPanel/Box/Label");
 
         // Load each Line node into the array
-        for (int i = 1; i < 6; i++)
-            for (int j = 1; j < 3; j++)
-                entries.Add(GetNode<LineEdit>("InputPanel/Box/Split" + i + "/LineEdit" + j));
+        const int ROWS = 5;
+        const int COLUMNS = 2;
+
+        for (int i = 0; i < ROWS; i++)
+            for (int j = 0; j < COLUMNS; j++) { 
+                entries.Add(GetNode<LineEdit>("InputPanel/Box/Split" + i + "/Control" + j + entryText));
+                entryColor.Add(GetNode<ColorPickerButton>("InputPanel/Box/Split" + i + "/Control" + j + entryColors));
+            }
+        
 	}
 
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
+    /*
 	public override void _Process(double delta)
 	{
 	}
+    */
 }
