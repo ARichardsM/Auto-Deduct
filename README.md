@@ -18,8 +18,7 @@ Uses: Godot, C#
 
 ## Current Objectives
 
-- [ ] Improved Labels
-- [ ] Adjustable Entry Lines
+- [X] Improved Labels
 
 ## Future Goals
 
@@ -27,3 +26,4 @@ Uses: Godot, C#
 - [ ] Additional Competition (Group Based)
 - [ ] Additional Competition (Simple Brante Steele)
 	- [ ] Among Us Simulator
+- [ ] Adjustable Entry Lines

@@ -151,7 +151,11 @@ public partial class MainPage : Node
                 entries.Add(GetNode<LineEdit>("InputPanel/Box/Split" + i + "/Control" + j + entryText));
                 entryColor.Add(GetNode<ColorPickerButton>("InputPanel/Box/Split" + i + "/Control" + j + entryColors));
             }
-        
+
+        // Set colours
+        string[] COLOURS = { "Black", "Blue", "Brown", "Cyan", "Green", "Orange", "Pink", "Purple", "Red", "Yellow" };
+        for (int i = 0;i < COLOURS.Length;i++)
+            entryColor[i].SetPickColor(new Color(COLOURS[i]));
 	}
 
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
