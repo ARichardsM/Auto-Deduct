@@ -18,7 +18,7 @@ theme_override_constants/separation = 2
 [node name="Text" type="LineEdit" parent="Box"]
 custom_minimum_size = Vector2(248, 0)
 layout_mode = 2
-placeholder_text = "Temp Text"
+placeholder_text = "Unselected"
 
 [node name="Center" type="CenterContainer" parent="Box"]
 layout_mode = 2

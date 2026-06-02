@@ -13,17 +13,16 @@ Uses: Godot, C#
 | MainPage.cs                 | The main page script, calls and manages deductors.               |
 | MainPage.tscn               | The main page scene.                                             |
 |-----------------------------|------------------------------------------------------------------|
-| DeductorScript.cs           | Deduction based on an elimination tournament. (Single & Double)  |
+| TournamentScript.cs         | Deduction based on an elimination tournament. (Single & Double)  |
 | RoundRobinScript.cs         | Deduction based on a round robin tournament. (Single & Double)   |
 
 ## Current Objectives
 
-- [X] Improved Labels
-
-## Future Goals
-
-- [ ] Mobile Support
 - [ ] Additional Competition (Group Based)
 - [ ] Additional Competition (Simple Brante Steele)
 	- [ ] Among Us Simulator
+
+## Future Goals
+
 - [ ] Adjustable Entry Lines
+- [ ] Mobile Support
